@@ -5,7 +5,7 @@
   import Button from '$lib/components/Button.svelte';
 </script>
 
-<div class="fixed z-10 w-full top-0 left-0 right-0 px-4 md:px-10 bg-background-secondary">
+<div class="fixed z-20 w-full top-0 left-0 right-0 px-4 md:px-10 bg-background-secondary">
   <div class="container mx-auto py-4 md:py-6 grid grid-cols-3 items-center">
 
     <!-- Logo -->

@@ -23,8 +23,7 @@
 
   {#if tag}
     <p class="
-    text-foreground-tertiary
-      {large ? 'text-tint': 'text-xs uppercase'}
+      {large ? 'opacity-50': 'text-xs uppercase text-foreground-tertiary'}
     ">{@html tag}</p>
   {/if}
   

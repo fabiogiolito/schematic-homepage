@@ -6,7 +6,7 @@
   import Image from '$lib/components/Image.svelte';
 </script>
 
-<div class="bg-white px-4 space-y-24 md:space-y-40 lg:space-y-64 pb-24 md:pb-40 lg:pb-64">
+<div class="relative z-10  bg-white px-4 space-y-24 md:space-y-40 lg:space-y-64 pb-24 md:pb-40 lg:pb-64">
   
   <!-- LPs Hero -->
   <section id="LP" class="bg-white bg-linear-to-b from-blue-100 to-blue-100/0

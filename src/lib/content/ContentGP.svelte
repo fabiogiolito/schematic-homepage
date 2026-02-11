@@ -6,7 +6,7 @@
   import Image from '$lib/components/Image.svelte';
 </script>
 
-<div class="bg-tint-dark text-white px-4 space-y-24 md:space-y-40 lg:space-y-64 pb-24 md:pb-40 lg:pb-64">
+<div class="relative z-10 bg-tint-dark text-white px-4 space-y-24 md:space-y-40 lg:space-y-64 pb-24 md:pb-40 lg:pb-64">
   
   <!-- GPs Hero -->
   <section id="GP" class="
