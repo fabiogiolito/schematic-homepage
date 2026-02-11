@@ -16,9 +16,9 @@
     <div class="relative overflow-x-clip space-y-16 lg:space-y-0">
 
       <!-- Circles -->
-      <div class="relative aspect-2/1 lg:absolute inset-0 scale-130 sm:scale-110 lg:scale-65 lg:-translate-y-10 xl:-translate-y-15 2xl:-translate-y-40">
-        <div style="translate: 25% 0;" class="absolute right-1/2 rounded-full w-1/2 aspect-square bg-conic-90 from-rose-600/75 via-amber-600/50 to-amber-600/10"></div>
-        <div style="translate: -25% 0;" class="absolute left-1/2 rounded-full w-1/2 aspect-square -bg-conic-90 from-indigo-600/75 via-emerald-600/50 to-lime-600/10"></div>
+      <div id="marketplace-circles-container" class="relative aspect-2/1 lg:absolute inset-0 scale-130 sm:scale-110 lg:scale-65 lg:-translate-y-10 xl:-translate-y-15 2xl:-translate-y-40">
+        <div id="marketplace-circle-left" style="translate: 25% 0;" class="absolute right-1/2 rounded-full w-1/2 aspect-square bg-conic-90 from-rose-600/75 via-amber-600/50 to-amber-600/10"></div>
+        <div id="marketplace-circle-right" style="translate: -25% 0;" class="absolute left-1/2 rounded-full w-1/2 aspect-square -bg-conic-90 from-indigo-600/75 via-emerald-600/50 to-lime-600/10"></div>
       </div>
 
       <!-- Grid -->
@@ -69,7 +69,33 @@
       </div>
 
     </div>
-    
 
   </div>
 </section>
+
+<style>
+  @keyframes slideRight {
+    from { translate: 0 0; }
+    to { translate: 25% 0; }
+  }
+
+  @keyframes slideLeft {
+    from { translate:  0 0; }
+    to { translate: -25% 0; }
+  }
+
+  #marketplace-circle-left {
+    animation: slideRight 2s linear forwards;
+  }
+  
+  #marketplace-circle-right {
+    animation: slideLeft 2s linear forwards;
+  }
+
+  #marketplace-circle-left,
+  #marketplace-circle-right {
+    animation-timeline: view();
+    animation-range: 0% 35%;
+  }
+
+</style>

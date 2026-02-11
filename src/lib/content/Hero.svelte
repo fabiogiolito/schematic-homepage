@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import { ArrowCircleUpRight } from 'phosphor-svelte';
 
   import Button from "$lib/components/Button.svelte";
   import Heading from '$lib/components/Heading.svelte';
@@ -38,21 +39,23 @@
 </section>
 
 <section>
-  <div class="flex justify-center gap-24 text-left">
+  <div class="flex justify-center gap-24 text-left pb-40">
 
     <!-- LP CARD -->
     <div
       style="rotate: {Math.min(0, -10 * mousePosX)}deg; translate: {-20 * mousePosX}% {10 * mousePosX}%; scale: {Math.max(1 + (0.25 * -mousePosX), 1)};"
       class="
-        relative origin-bottom-right rounded-xl aspect-3/4 w-full max-w-md p-10
+        relative origin-bottom-right rounded-xl aspect-4/5 w-full max-w-md p-10
         bg-white bg-linear-to-b from-blue-100 to-blue-100/0
       "
     >
+      <span class="absolute top-0 right-0 m-6"><ArrowCircleUpRight class="w-10 h-10 opacity-25" /></span>
       <Heading
         tag="For LPs Deploying Capital"
         title="The Inbound Intelligence Engine"
         subtitle="Automate your intake. Accelerate your mandate. Transform a chaotic inbox into a streamlined pipeline."
         text="Schematic&apos;s AI analyzes every inbound request against your specific investment criteria the moment it arrives."
+        class="h-full flex flex-col [&>p]:mb-auto"
       />
       <a href="/#LP" class="absolute inset-0"></a>
     </div>
@@ -61,15 +64,17 @@
     <div
       style="rotate: {Math.max(0, -10 * mousePosX)}deg; translate: {-20 * mousePosX}% {-10 * mousePosX}%; scale: {Math.max(1 + (0.25 * mousePosX), 1)};"
       class="
-        relative origin-bottom-left rounded-xl aspect-3/4 w-full max-w-md p-10
+        relative origin-bottom-left rounded-xl aspect-4/5 w-full max-w-md p-10
         bg-tint-dark text-white bg-linear-to-b from-blue-900 to-blue-900/0
       "
     >
+      <span class="absolute top-0 right-0 m-6"><ArrowCircleUpRight class="w-10 h-10 opacity-25" /></span>
       <Heading
         tag="For GPs Deploying Capital"
         title="The Seamless Closing Engine"
         subtitle="Shorten the cycle. Secure the commitment. Eliminate the administrative friction tax."
         text="Schematic organizes your data, automates your logistics, and removes every hurdle between an LP and a signature."
+        class="h-full flex flex-col [&>p]:mb-auto"
       />
       <a href="/#GP" class="absolute inset-0"></a>
     </div>

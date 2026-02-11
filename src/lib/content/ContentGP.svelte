@@ -126,7 +126,7 @@
     </div>
 
     <!-- Features -->
-    <div class="col-span-3 lg:col-span-6 grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <div class="col-span-3 lg:col-span-6 grid grid-cols-1 lg:grid-cols-3 gap-4 text-foreground-primary">
 
       <div class="rounded-lg relative">
         <Image src="/GPs-Intelligence-1.png" alt="LPs Due Diligence" class="w-full" />
