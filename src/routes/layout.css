@@ -1,0 +1,25 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --color-tint: #7360D4;
+  --color-tint-dark: #3B3750;
+
+  --color-foreground-primary: #16141F;
+  --color-foreground-secondary: #77738C;
+  --color-foreground-tertiary: #ADABBA;
+  
+  --color-background-primary: #FFFFFF;
+  --color-background-secondary: #FBFAF9;
+  --color-background-tertiary: #EBE8E2;
+
+}
+
+html {
+  @apply bg-background-secondary text-balance;
+}
+
+section {
+  /* @apply ring ring-inset; */
+}
