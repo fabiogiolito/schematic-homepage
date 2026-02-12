@@ -66,7 +66,7 @@
         bg-white bg-linear-to-b from-blue-100 to-blue-100/0
       "
     >
-      <span class="absolute top-0 right-0 m-6"><ArrowCircleUpRight class="w-10 h-10 opacity-25" /></span>
+      <span class="absolute top-0 right-0 m-6"><ArrowCircleUpRight class="w-10 h-10 opacity-25"  weight="light" /></span>
       <Heading
         tag="For LPs Deploying Capital"
         title="The Inbound Intelligence Engine"
@@ -85,7 +85,7 @@
         bg-tint-dark text-white bg-linear-to-b from-blue-900 to-blue-900/0
       "
     >
-      <span class="absolute top-0 right-0 m-6"><ArrowCircleUpRight class="w-10 h-10 opacity-25" /></span>
+      <span class="absolute top-0 right-0 m-6"><ArrowCircleUpRight class="w-10 h-10 opacity-25"  weight="light" /></span>
       <Heading
         tag="For GPs Deploying Capital"
         title="The Seamless Closing Engine"
