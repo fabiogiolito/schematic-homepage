@@ -1,28 +1,58 @@
 <script>
+  import { onMount } from 'svelte';
+  import { animate, scroll, inView } from 'motion';
   import Heading from "$lib/components/Heading.svelte";
   import FeatureBlock from "$lib/components/FeatureBlock.svelte";
+  import { scrollReveal } from '$lib/actions/scrollReveal.js';
+
+  let circlesContainer;
+  let circleLeft;
+  let circleRight;
+  let gridEl;
+
+  onMount(() => {
+    // Circles: scroll-linked, complete when container reaches center of screen
+    scroll(
+      animate(circleLeft, { translate: ['0% 0', '25% 0'] }, { easing: 'linear' }),
+      { target: circlesContainer, offset: ['start end', '35% center'] }
+    );
+    scroll(
+      animate(circleRight, { translate: ['0% 0', '-25% 0'] }, { easing: 'linear' }),
+      { target: circlesContainer, offset: ['start end', '35% center'] }
+    );
+
+    // Text grid: hidden initially, fades in once circles area is near center
+    gridEl.style.opacity = '0';
+    gridEl.style.transform = 'translateY(30px)';
+    inView(gridEl, () => {
+      animate(gridEl,
+        { opacity: [0, 1], transform: ['translateY(30px)', 'translateY(0px)'] },
+        { duration: 0.6, easing: [0.22, 1, 0.36, 1] }
+      );
+    }, { margin: '0px 0px -60% 0px' });
+  });
 </script>
 
 <!-- Marketplace -->
 <section id="Marketplace" class="scroll-mt-16 py-24 lg:py-40  bg-background-secondary">
   <div class="container mx-auto px-4 space-y-16 md:space-y-40">
-  
-    <Heading large center
+
+    <div use:scrollReveal><Heading large center
       tag="The Global Fund Marketplace"
       title="Expand Beyond Your Existing Network"
       text="The world's first AI-augmented marketplace connecting verified LPs with high-performance GPs. Move beyond your Rolodex and into a global ecosystem of intent."
-    />
+    /></div>
 
     <div class="relative overflow-x-clip space-y-16 lg:space-y-0">
 
       <!-- Circles -->
-      <div id="marketplace-circles-container" class="relative aspect-2/1 lg:absolute inset-0 scale-130 sm:scale-110 lg:scale-65 lg:-translate-y-10 xl:-translate-y-15 2xl:-translate-y-40">
-        <div id="marketplace-circle-left" style="translate: 25% 0;" class="absolute right-1/2 rounded-full w-1/2 aspect-square bg-conic-90 from-rose-600/75 via-amber-600/50 to-amber-600/10"></div>
-        <div id="marketplace-circle-right" style="translate: -25% 0;" class="absolute left-1/2 rounded-full w-1/2 aspect-square -bg-conic-90 from-indigo-600/75 via-emerald-600/50 to-lime-600/10"></div>
+      <div bind:this={circlesContainer} class="relative aspect-2/1 lg:absolute inset-0 scale-130 sm:scale-110 lg:scale-65 lg:-translate-y-10 xl:-translate-y-15 2xl:-translate-y-40">
+        <div bind:this={circleLeft} class="absolute right-1/2 rounded-full w-1/2 aspect-square bg-conic-90 from-rose-600/75 via-amber-600/50 to-amber-600/10"></div>
+        <div bind:this={circleRight} class="absolute left-1/2 rounded-full w-1/2 aspect-square -bg-conic-90 from-indigo-600/75 via-emerald-600/50 to-lime-600/10"></div>
       </div>
 
       <!-- Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-6 gap-10 lg:gap-0 relative">
+      <div bind:this={gridEl} class="grid grid-cols-1 md:grid-cols-6 gap-10 lg:gap-0 relative">
         
         <!-- Marketplace for LPs -->
         <div class="col-span-3 lg:col-span-2 md:py-16 space-y-6 xl:space-y-16">
@@ -73,29 +103,3 @@
   </div>
 </section>
 
-<style>
-  @keyframes slideRight {
-    from { translate: 0 0; }
-    to { translate: 25% 0; }
-  }
-
-  @keyframes slideLeft {
-    from { translate:  0 0; }
-    to { translate: -25% 0; }
-  }
-
-  #marketplace-circle-left {
-    animation: slideRight 2s linear forwards;
-  }
-  
-  #marketplace-circle-right {
-    animation: slideLeft 2s linear forwards;
-  }
-
-  #marketplace-circle-left,
-  #marketplace-circle-right {
-    animation-timeline: view();
-    animation-range: 0% 35%;
-  }
-
-</style>

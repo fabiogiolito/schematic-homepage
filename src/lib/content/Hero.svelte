@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import { animate } from 'motion';
   import { ArrowCircleUpRight } from 'phosphor-svelte';
 
   import Button from "$lib/components/Button.svelte";
@@ -7,9 +8,10 @@
 
   let screenSize = $state({ w: 0, h: 0 });
   let mousePosX = $state();
+  let heroContent;
+  let heroCards;
 
   function handleWindowResize() {
-    console.log('resized')
     screenSize = { w: window.innerWidth, h: window.innerHeight }
   }
 
@@ -17,14 +19,29 @@
     mousePosX = Math.round((e.clientX - screenSize.w / 2) / (screenSize.w / 2) * 100) / 100;
   }
 
-  onMount(() => handleWindowResize() );
+  onMount(() => {
+    handleWindowResize();
+
+    if (heroContent) {
+      animate(heroContent,
+        { opacity: [0, 1], transform: ['translateY(30px)', 'translateY(0px)'] },
+        { duration: 0.8, easing: [0.22, 1, 0.36, 1] }
+      );
+    }
+    if (heroCards) {
+      animate(heroCards,
+        { opacity: [0, 1], transform: ['translateY(40px)', 'translateY(0px)'] },
+        { duration: 0.8, delay: 0.2, easing: [0.22, 1, 0.36, 1] }
+      );
+    }
+  });
 
 </script>
 
 <svelte:window onresize={handleWindowResize} onmousemove={handleMouseMove}></svelte:window>
 
 <section id="home" >
-  <div class="container mx-auto text-center py-32 md:py-64 px-4 sm:px-10 space-y-6 md:space-y-20">
+  <div bind:this={heroContent} class="container mx-auto text-center py-32 md:py-64 px-4 sm:px-10 space-y-6 md:space-y-20">
 
     <h1 class="text-4xl md:text-6xl lg:text-8xl xl:text-[120px] font-semibold tracking-tight leading-[100%]">The New Standard for Private Capital.</h1>
     
@@ -39,7 +56,7 @@
 </section>
 
 <section class="overflow-x-clip hidden lg:block">
-  <div class="flex justify-center gap-10 text-left pb-40">
+  <div bind:this={heroCards} class="flex justify-center gap-10 text-left pb-40">
 
     <!-- LP CARD -->
     <div

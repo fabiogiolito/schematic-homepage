@@ -2,19 +2,20 @@
   import Heading from "$lib/components/Heading.svelte";
   import FeatureBlock from "$lib/components/FeatureBlock.svelte";
   import Image from "$lib/components/Image.svelte";
+  import { scrollReveal } from '$lib/actions/scrollReveal.js';
 </script>
 
 <!-- Social Proof -->
 <section id="Customers" class="scroll-mt-16 px-4 md:px-10 py-24 md:py-64 space-y-20 bg-background-tertiary">
   <div class="container mx-auto space-y-16">
-  
-    <Heading
+
+    <div use:scrollReveal><Heading
       tag="The Standard for Global Allocators"
       title="Trusted by the Industry's Best"
       text="Join the elite firms moving faster with Schematic. We power the teams managing tomorrow's capital."
-    />
+    /></div>
 
-    <div class="grid grid-cols-12 gap-4">
+    <div use:scrollReveal class="grid grid-cols-12 gap-4">
 
       <!-- Testimonial -->
       <div class="col-span-12 md:col-span-6 rounded-lg bg-[#79837B] p-4 md:p-8 flex flex-col gap-6 md:justify-between">

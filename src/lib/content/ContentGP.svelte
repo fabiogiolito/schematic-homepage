@@ -4,12 +4,13 @@
   import Heading from "$lib/components/Heading.svelte";
   import FeatureBlock from "$lib/components/FeatureBlock.svelte";
   import Image from '$lib/components/Image.svelte';
+  import { scrollReveal } from '$lib/actions/scrollReveal.js';
 </script>
 
 <div class="relative z-10 bg-tint-dark text-white px-4 space-y-24 md:space-y-40 lg:space-y-64 pb-24 md:pb-40 lg:pb-64">
   
   <!-- GPs Hero -->
-  <section id="GP" class="
+  <section use:scrollReveal id="GP" class="
     -mx-4 scroll-mt-16 pt-24 lg:pt-40
     bg-tint-dark text-white bg-linear-to-b from-blue-900 to-blue-900/0
   ">
@@ -28,7 +29,7 @@
   </section>
 
   <!-- Section GPs Vault -->
-  <section class="container mx-auto grid grid-cols-1 md:grid-cols-6 space-y-10 md:space-y-0">
+  <section use:scrollReveal class="container mx-auto grid grid-cols-1 md:grid-cols-6 space-y-10 md:space-y-0">
 
     <!-- Left col -->
     <div class="col-span-3 flex flex-col md:pr-16 space-y-10">
@@ -74,7 +75,7 @@
 
 
   <!-- Section GPs Benchmark -->
-  <section class="container mx-auto gap-10 lg:gap-x-0 grid grid-cols-1 md:grid-cols-6">
+  <section use:scrollReveal class="container mx-auto gap-10 lg:gap-x-0 grid grid-cols-1 md:grid-cols-6">
 
     <!-- Header -->
     <div class="col-span-6 flex flex-col space-between">
@@ -114,7 +115,7 @@
 
 
   <!-- Section GPs Intelligence -->
-  <section class="container mx-auto grid grid-cols-1 md:grid-cols-6 space-y-10">
+  <section use:scrollReveal class="container mx-auto grid grid-cols-1 md:grid-cols-6 space-y-10">
 
     <!-- Header -->
     <div class="col-span-3 lg:col-span-6 flex flex-col space-between md:pr-10">
@@ -164,7 +165,7 @@
 
 
   <!-- Section GPs Signatures -->
-  <section class="container mx-auto grid grid-cols-1 md:grid-cols-6 gap-10">
+  <section use:scrollReveal class="container mx-auto grid grid-cols-1 md:grid-cols-6 gap-10">
 
     <!-- Header -->
     <div class="lg:col-span-2 lg:pr-24">
@@ -209,7 +210,7 @@
 
 
   <!-- Section GPs Compliance -->
-  <section class="container mx-auto grid grid-cols-1 md:grid-cols-6 space-y-10 md:space-y-0">
+  <section use:scrollReveal class="container mx-auto grid grid-cols-1 md:grid-cols-6 space-y-10 md:space-y-0">
 
     <!-- Header -->
     <div class="col-span-3 lg:col-span-4 md:pr-10 lg:flex lg:flex-col lg:jusitfy-between space-y-10">
@@ -250,7 +251,7 @@
 
 
   <!-- Section GPs All Features -->
-  <section class="container mx-auto space-y-10">
+  <section use:scrollReveal class="container mx-auto space-y-10">
 
     <Heading center
       tag="The end-to-end OS for the modern General Partner"
@@ -328,7 +329,7 @@
 
 
   <!-- Section GPs Stats -->
-  <section class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 items-start">
+  <section use:scrollReveal class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 items-start">
 
     <div class="space-y-2">
       <p class="text-transparent text-7xl font-bold tracking-tighter bg-[url(/stats-mask-lp.png)] bg-clip-text bg-fixed bg-center bg-cover">35%</p>

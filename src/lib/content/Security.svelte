@@ -2,11 +2,12 @@
   import Heading from "$lib/components/Heading.svelte";
   import FeatureBlock from "$lib/components/FeatureBlock.svelte";
   import Image from "$lib/components/Image.svelte";
+  import { scrollReveal } from '$lib/actions/scrollReveal.js';
 </script>
 
 <!-- Security -->
 <section id="Security" class="scroll-mt-16 px-4 md:px-10 py-24 md:py-64 space-y-20 bg-[#E1DED8]">
-  <div class="container mx-auto space-y-16 grid grid-cols-1 md:grid-cols-6">
+  <div use:scrollReveal class="container mx-auto space-y-16 grid grid-cols-1 md:grid-cols-6">
   
     <div class="col-span-2 md:pr-24 h-full">
       <Heading

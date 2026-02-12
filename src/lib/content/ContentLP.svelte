@@ -4,12 +4,13 @@
   import Heading from "$lib/components/Heading.svelte";
   import FeatureBlock from "$lib/components/FeatureBlock.svelte";
   import Image from '$lib/components/Image.svelte';
+  import { scrollReveal } from '$lib/actions/scrollReveal.js';
 </script>
 
 <div class="relative z-10  bg-white px-4 space-y-24 md:space-y-40 lg:space-y-64 pb-24 md:pb-40 lg:pb-64">
   
   <!-- LPs Hero -->
-  <section id="LP" class="bg-white bg-linear-to-b from-blue-100 to-blue-100/0
+  <section use:scrollReveal id="LP" class="bg-white bg-linear-to-b from-blue-100 to-blue-100/0
     -mx-4 scroll-mt-16 pt-24 lg:pt-40
   ">
 
@@ -27,7 +28,7 @@
   </section>
 
   <!-- Section LPs Report -->
-  <section class="container mx-auto grid grid-cols-1 md:grid-cols-6 space-y-10 md:space-y-0">
+  <section use:scrollReveal class="container mx-auto grid grid-cols-1 md:grid-cols-6 space-y-10 md:space-y-0">
 
     <!-- Left col -->
     <div class="col-span-3 flex flex-col md:pr-16 space-y-10">
@@ -73,7 +74,7 @@
 
 
   <!-- Section LPs Benchmark -->
-  <section class="container mx-auto gap-10 lg:gap-x-0 grid grid-cols-1 md:grid-cols-6">
+  <section use:scrollReveal class="container mx-auto gap-10 lg:gap-x-0 grid grid-cols-1 md:grid-cols-6">
 
     <!-- Header -->
     <div class="col-span-6 flex flex-col space-between">
@@ -113,7 +114,7 @@
 
 
   <!-- Section LPs Due-Diligence -->
-  <section class="container mx-auto grid grid-cols-1 md:grid-cols-6 space-y-10">
+  <section use:scrollReveal class="container mx-auto grid grid-cols-1 md:grid-cols-6 space-y-10">
 
     <!-- Header -->
     <div class="col-span-3 lg:col-span-6 flex flex-col space-between md:pr-10">
@@ -163,7 +164,7 @@
 
 
   <!-- Section LPs Custom Score -->
-  <section class="container mx-auto grid grid-cols-1 md:grid-cols-6 gap-10">
+  <section use:scrollReveal class="container mx-auto grid grid-cols-1 md:grid-cols-6 gap-10">
 
     <!-- Header -->
     <div class="col-span-6 xl:col-span-2 flex flex-col gap-10 md:pr-10">
@@ -213,7 +214,7 @@
 
 
   <!-- Section LPs Tax Implications -->
-  <section class="container mx-auto grid grid-cols-1 md:grid-cols-6 space-y-10 md:space-y-0">
+  <section use:scrollReveal class="container mx-auto grid grid-cols-1 md:grid-cols-6 space-y-10 md:space-y-0">
 
     <!-- Header -->
     <div class="col-span-3 lg:col-span-4 md:pr-10 lg:flex lg:flex-col lg:jusitfy-between space-y-10">
@@ -254,7 +255,7 @@
 
 
   <!-- Section LPs All Features -->
-  <section class="container mx-auto space-y-10">
+  <section use:scrollReveal class="container mx-auto space-y-10">
 
     <Heading center
       tag="Built for the Modern Investment Team"
@@ -329,7 +330,7 @@
 
 
   <!-- Section LPs Stats -->
-  <section class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 items-start">
+  <section use:scrollReveal class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 items-start">
 
     <div class="space-y-2">
       <p class="text-transparent text-7xl font-bold tracking-tighter bg-[url(/stats-mask-lp.png)] bg-clip-text bg-fixed bg-center bg-cover">90%</p>
