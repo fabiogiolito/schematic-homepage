@@ -6,7 +6,7 @@
 </script>
 
 <div class="fixed z-20 w-full top-0 left-0 right-0 px-4 md:px-10 bg-background-secondary">
-  <div class="container mx-auto py-4 md:py-6 grid grid-cols-3 items-center">
+  <div class="container mx-auto py-4 md:py-6 grid grid-cols-2 items-center">
 
     <!-- Logo -->
     <a href="/#home" class="flex gap-2 text-tint justify-self-start">
@@ -17,11 +17,11 @@
     </a>
 
     <!-- Tabs -->
-    <nav class="text-sm font-medium justify-self-center">
+    <!-- <nav class="hidden text-sm font-medium justify-self-center">
       <a class="px-4 py-2.5 rounded hover:bg-tint/10" href="#LP">Deploy Capital</a>
       <a class="px-4 py-2.5 rounded hover:bg-tint/10" href="#GP">Raise Capital</a>
       <a class="px-4 py-2.5 rounded hover:bg-tint/10" href="#Marketplace">Marketplace</a>
-    </nav>
+    </nav> -->
 
     <!-- Request Access Button -->
     <Button tint href="#request-access" class="justify-self-end">

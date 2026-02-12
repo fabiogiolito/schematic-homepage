@@ -38,8 +38,8 @@
   </div>
 </section>
 
-<section>
-  <div class="flex justify-center gap-24 text-left pb-40">
+<section class="overflow-x-clip hidden lg:block">
+  <div class="flex justify-center gap-10 text-left pb-40">
 
     <!-- LP CARD -->
     <div
