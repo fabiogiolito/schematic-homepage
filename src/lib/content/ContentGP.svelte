@@ -92,7 +92,7 @@
     </div>
 
     <!-- Features -->
-    <div class="col-span-2 md:col-span-6 lg:col-span-2 flex flex-col justify-between md:flex-row lg:flex-col lg:px-10 gap-10">
+    <div class="col-span-6 sm:col-span-2 md:col-span-6 lg:col-span-2 flex flex-col justify-between md:flex-row lg:flex-col lg:px-10 gap-10">
 
       <FeatureBlock
         Icon={ChartBar}
@@ -168,7 +168,7 @@
   <section use:scrollReveal class="container mx-auto grid grid-cols-1 md:grid-cols-6 gap-10">
 
     <!-- Header -->
-    <div class="lg:col-span-2 lg:pr-24">
+    <div class="md:col-span-6 lg:col-span-2 lg:pr-24">
       <Heading
         tag="The Final Mile"
         title="Friction-Free Closing. <br /> Get signatures in record time."
@@ -176,11 +176,11 @@
       />
     </div>
 
-    <div class="lg:col-span-4 rounded-lg">
+    <div class="md:col-span-6 lg:col-span-4 rounded-lg">
       <Image src="GPs-Signatures.png" alt="GPs Signatures" />
     </div>
 
-    <div class="lg:col-span-6 flex flex-col md:flex-row gap-10 md:gap-0">
+    <div class="md:col-span-6 flex flex-col md:flex-row gap-10 md:gap-0">
       <div class="md:pr-10">
         <FeatureBlock
           Icon={CirclesThreePlus}
