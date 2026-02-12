@@ -330,7 +330,7 @@
 
 
   <!-- Section LPs Stats -->
-  <section use:scrollReveal class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 items-start">
+  <section class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 items-start">
 
     <div class="space-y-2">
       <p class="text-transparent text-7xl font-bold tracking-tighter bg-[url(/stats-mask-lp.png)] bg-clip-text bg-fixed bg-center bg-cover">90%</p>
