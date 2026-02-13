@@ -1,10 +1,11 @@
 <script>
-  import { createLayout } from 'animejs/layout';
+  import { onMount, tick } from 'svelte';
+  import { createLayout } from 'animejs';
 
   import Navbar from "$lib/content/Navbar.svelte";
   import Heading from '$lib/components/Heading.svelte';
   import FeatureBlock from '$lib/components/FeatureBlock.svelte';
-  
+
   import Hero from "$lib/content/Hero.svelte";
   import ContentLP from '$lib/content/ContentLP.svelte';
 	import ContentGP from '$lib/content/ContentGP.svelte';
@@ -14,22 +15,45 @@
   import Footer from "$lib/content/Footer.svelte";
   import Button from "$lib/components/Button.svelte";
 
-
   let current = $state(false);
   let showContent = $state(false);
+  let animating = $state(false);
+  let containerEl;
+  let layoutInstance;
 
-  // const layout = createLayout(".layout-container", {});
+  onMount(() => {
+    if (containerEl) {
+      layoutInstance = createLayout(containerEl, {
+        children: '.card-LP, .card-GP',
+      });
+    }
+  });
 
-  function handleCardClick(selected) { 
-    // layout.update(({ root }) => {
-    //   root.classList.remove('cards-grid');
-    //   root.classList.add('cards-current-' + selected);
-    // });
+  function handleCardClick(selected) {
+    if (current || animating) return;
+    animating = true;
+
+    if (layoutInstance) {
+      layoutInstance.update(({ root }) => {
+        root.classList.remove('cards-grid');
+        root.classList.add('cards-current-' + selected);
+      }, {
+        duration: 800,
+        ease: 'outExpo',
+      }).then(() => {
+        showContent = true;
+        animating = false;
+        tick().then(() => {
+          document.getElementById(selected)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    } else {
+      showContent = true;
+      animating = false;
+    }
+
+    // Sync Svelte state so reactive class binding matches the DOM change
     current = selected;
-    showContent = true;
-    const element = document.getElementById(selected);
-    element.scrollIntoView({ behavior: "smooth", block: "start" });
-    // window.setTimeout(() => showContent = true, 500);
   }
 
 </script>
@@ -42,13 +66,13 @@
   Selecting a card displays that card's content first, the other card's content second, and the rest of the content after.
 -->
 
-<div class="layout-container {current ? 'cards-current-' + current : 'cards-grid'}">
+<div bind:this={containerEl} class="layout-container {current ? 'cards-current-' + current : 'cards-grid'}">
 
   <!-- svelte-ignore a11y_click_events_have_key_events -->
   <!-- svelte-ignore a11y_no_static_element_interactions -->
   <div class="card-LP" onclick={() => handleCardClick('LP')}>
 
-    <div class="bg-white relative z-10 space-y-24 md:space-y-40 lg:space-y-64 pb-24 md:pb-40 lg:pb-64">
+    <div class="bg-white relative z-10 space-y-24 md:space-y-40 lg:space-y-64">
 
       <!-- LPs Hero -->
       <section id="LP" class="bg-linear-to-b from-blue-100 to-blue-100/0
@@ -76,7 +100,7 @@
   <!-- svelte-ignore a11y_no_static_element_interactions -->
   <div class="card-GP" onclick={() => handleCardClick('GP')}>
 
-    <div class="bg-tint-dark text-white space-y-24 md:space-y-40 lg:space-y-64 pb-24 md:pb-40 lg:pb-64">
+    <div class="bg-tint-dark text-white space-y-24 md:space-y-40 lg:space-y-64">
   
       <!-- GPs Hero -->
       <section id="GP" class="
@@ -116,7 +140,13 @@
   @reference "tailwindcss";
 
   @media (min-width: 1024px) {
-    
+
+    .card-LP, .card-GP {
+      overflow: hidden;
+      transition: border-radius 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
     .cards-grid {
       @apply container mx-auto px-10 grid grid-cols-2 gap-0;
     }
