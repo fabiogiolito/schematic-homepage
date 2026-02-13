@@ -30,7 +30,7 @@
     </p>
   {/if}
   
-  <h1 class="{large ? 'text-4xl md:text-4xl xl:text-5xl 2xl:text-6xl font-medium leading-[100%]' : 'text-lg md:text-2xl leading-tight'}">
+  <h1 class="{large ? 'text-4xl md:text-5xl font-medium leading-[100%]' : 'text-lg md:text-2xl leading-tight'}">
     {@html title}
   </h1>
   

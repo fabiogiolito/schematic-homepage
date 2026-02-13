@@ -75,7 +75,7 @@
   onresize={handleResize}
 ></svelte:window>
 
-<Navbar />
+<Navbar showTabs={showContent} />
 <Hero />
 
 <!--
@@ -91,7 +91,7 @@
 >
   
   <!-- Card LP -->
-  <div class="
+  <div id="LP" class="
       card card-LP {LPCardStateClass} {highlightedCard == "LP" ? 'z-10' : ''}
       py-24 space-y-24 sm:py-40 sm:space-y-40 xl:py-64 xl:space-y-64
       bg-white text-foreground-primary
@@ -111,7 +111,7 @@
   </div>
 
   <!-- Card GP -->
-  <div class="
+  <div id="GP" class="
       card card-GP {GPCardStateClass} {highlightedCard == "GP" ? 'z-10' : ''}
       py-24 space-y-24 sm:py-40 sm:space-y-40 xl:py-64 xl:space-y-64
       bg-tint-dark text-white
@@ -124,7 +124,7 @@
       subtitle="Shorten the cycle. Secure the commitment. Eliminate the administrative friction tax."
       text="Schematic organizes your data, automates your logistics, and removes every hurdle between an LP and a signature."
     />
-    <div class="{!showContent ? 'lg:hidden' : ''} space-y-80">
+    <div class="{!showContent ? 'lg:hidden' : ''} px-4 sm:px-10 space-y-24 sm:space-y-40 lg:space-y-80">
       <ContentGP />
     </div>
     <button class="hidden absolute inset-0 cursor-pointer {!showContent ? 'lg:block' : ''}" onclick={() => handleCardClick("GP")} aria-label="Explore GP Features"></button>
