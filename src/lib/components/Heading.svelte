@@ -8,13 +8,14 @@
     text, 
     children,
     class: classCustom,
+    transition = false,
     ...props
   } = $props();
 </script>
 
 <div 
   class={[
-    ` space-y-4 flex-1
+    ` space-y-4 lg:space-y-6 flex-1
       ${center ? 'text-center' : ''}
     `, classCustom
   ]}
@@ -24,10 +25,12 @@
   {#if tag}
     <p class="
       {large ? 'opacity-50': 'text-xs uppercase text-foreground-tertiary'}
-    ">{@html tag}</p>
+    ">
+      {@html tag}
+    </p>
   {/if}
   
-  <h1 class="{large ? 'text-4xl md:text-4xl lg:text-6xl font-medium leading-[100%]' : 'text-lg md:text-2xl leading-tight'}">
+  <h1 class="{large ? 'text-4xl md:text-4xl xl:text-5xl 2xl:text-6xl font-medium leading-[100%]' : 'text-lg md:text-2xl leading-tight'}">
     {@html title}
   </h1>
   

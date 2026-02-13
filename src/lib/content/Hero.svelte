@@ -38,9 +38,9 @@
 
 </script>
 
-<svelte:window onresize={handleWindowResize} onmousemove={handleMouseMove}></svelte:window>
+<!-- <svelte:window onresize={handleWindowResize} onmousemove={handleMouseMove}></svelte:window> -->
 
-<section id="home" >
+<section id="home" class="sticky top-0 -z-10">
   <div bind:this={heroContent} class="container mx-auto text-center py-32 md:py-64 px-4 sm:px-10 space-y-6 md:space-y-20">
 
     <h1 class="text-4xl md:text-6xl lg:text-8xl xl:text-[120px] font-semibold tracking-tight leading-[100%]">The New Standard for Private Capital.</h1>
@@ -51,50 +51,6 @@
     </div>
     
     <!-- <Button href="/#request-access">Request Access</Button> -->
-
-  </div>
-</section>
-
-<section class="overflow-x-clip hidden lg:block">
-  <div bind:this={heroCards} class="flex justify-center gap-10 text-left pb-40">
-
-    <!-- LP CARD -->
-    <div
-      style="rotate: {Math.min(0, -10 * mousePosX)}deg; translate: {-20 * mousePosX}% {10 * mousePosX}%; scale: {Math.max(1 + (0.25 * -mousePosX), 1)};"
-      class="
-        relative origin-bottom-right rounded-xl aspect-4/5 w-full max-w-md p-10
-        bg-white bg-linear-to-b from-blue-100 to-blue-100/0
-      "
-    >
-      <span class="absolute top-0 right-0 m-6"><ArrowCircleUpRight class="w-10 h-10 opacity-25"  weight="light" /></span>
-      <Heading
-        tag="For LPs Deploying Capital"
-        title="The Inbound Intelligence Engine"
-        subtitle="Automate your intake. Accelerate your mandate. Transform a chaotic inbox into a streamlined pipeline."
-        text="Schematic&apos;s AI analyzes every inbound request against your specific investment criteria the moment it arrives."
-        class="h-full flex flex-col [&>p]:mb-auto"
-      />
-      <a href="/#LP" class="absolute inset-0"></a>
-    </div>
-
-    <!-- GP CARD -->
-    <div
-      style="rotate: {Math.max(0, -10 * mousePosX)}deg; translate: {-20 * mousePosX}% {-10 * mousePosX}%; scale: {Math.max(1 + (0.25 * mousePosX), 1)};"
-      class="
-        relative origin-bottom-left rounded-xl aspect-4/5 w-full max-w-md p-10
-        bg-tint-dark text-white bg-linear-to-b from-blue-900 to-blue-900/0
-      "
-    >
-      <span class="absolute top-0 right-0 m-6"><ArrowCircleUpRight class="w-10 h-10 opacity-25"  weight="light" /></span>
-      <Heading
-        tag="For GPs Deploying Capital"
-        title="The Seamless Closing Engine"
-        subtitle="Shorten the cycle. Secure the commitment. Eliminate the administrative friction tax."
-        text="Schematic organizes your data, automates your logistics, and removes every hurdle between an LP and a signature."
-        class="h-full flex flex-col [&>p]:mb-auto"
-      />
-      <a href="/#GP" class="absolute inset-0"></a>
-    </div>
 
   </div>
 </section>

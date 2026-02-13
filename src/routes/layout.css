@@ -23,3 +23,23 @@ html {
 section {
   /* @apply ring ring-inset; */
 }
+
+
+
+::view-transition(*) {
+  animation-duration: 4s;
+}
+
+::view-transition-group(*) {
+  animation-duration: 4s;
+}
+
+
+
+::view-transition-old(*) {
+  animation-duration: 4s;
+}
+
+::view-transition-new(*) {
+  animation-duration: 4s;
+}
