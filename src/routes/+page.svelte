@@ -17,8 +17,8 @@
 
   // STATE ==================
   
-  let currentCard = $state(false);
-  let showContent = $state(false);
+  let currentCard = $state("LP");
+  let showContent = $state(true);
   let mouseX = $state(0);
   let scrollImpact = $state(0);
   let contentTop = $state();
@@ -53,12 +53,19 @@
 
   function handleResize(e) {
     screenLG = window.innerWidth >= "1024";
+    handleScroll();
   }
 
 
   // LOAD ====================
 
-  onMount(handleResize);
+  onMount(() => {
+    if (window.scrollY == 0) {
+      currentCard = false;
+      showContent = false;
+      handleResize();
+    }
+  });
 
 </script>
 
