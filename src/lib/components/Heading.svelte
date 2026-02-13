@@ -15,8 +15,8 @@
 
 <div 
   class={[
-    ` space-y-4 lg:space-y-6 flex-1
-      ${center ? 'text-center' : ''}
+    `heading-group space-y-4 lg:space-y-6 flex-1 flex flex-col transition-all duration-500
+      ${center ? 'text-center px-10' : ''}
     `, classCustom
   ]}
   {...props}

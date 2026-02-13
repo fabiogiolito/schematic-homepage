@@ -16,7 +16,7 @@
       </span>
     </a>
 
-    <!-- <BreakpointsDebug /> -->
+    <BreakpointsDebug />
 
     <!-- Tabs -->
     <!-- <nav class="hidden text-sm font-medium justify-self-center">

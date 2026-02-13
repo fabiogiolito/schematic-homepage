@@ -41,7 +41,7 @@
 <!-- <svelte:window onresize={handleWindowResize} onmousemove={handleMouseMove}></svelte:window> -->
 
 <section id="home">
-  <div bind:this={heroContent} class="container mx-auto text-center py-32 md:py-64 px-4 sm:px-10 space-y-6 md:space-y-20">
+  <div bind:this={heroContent} class="min-h-[85vh] container mx-auto text-center flex flex-col justify-center py-24 px-4 sm:px-10 space-y-6 md:space-y-20">
 
     <h1 class="text-4xl md:text-6xl lg:text-8xl xl:text-[120px] font-semibold tracking-tight leading-[100%]">The New Standard for Private Capital.</h1>
     

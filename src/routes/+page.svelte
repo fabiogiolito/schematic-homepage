@@ -15,48 +15,58 @@
   import Footer from "$lib/content/Footer.svelte";
   import Button from "$lib/components/Button.svelte";
 
-  let current = $state(false);
+  // STATE ==================
+  
+  let currentCard = $state(false);
   let showContent = $state(false);
-  let animating = $state(false);
-  let containerEl;
-  let layoutInstance;
+  let mouseX = $state(0);
+  let scrollImpact = $state(0);
+  let contentTop = $state();
+  let screenLG = $state(false);
 
-  onMount(() => {
-    if (containerEl) {
-      layoutInstance = createLayout(containerEl, {
-        children: '.card-LP, .card-GP',
-      });
-    }
-  });
+  let LPCardStateClass = $derived(showContent ? 'card-static' : currentCard == "LP" ? 'card-expanded' : 'card-collapsed');
+  let GPCardStateClass = $derived(showContent ? 'card-static' : currentCard == "GP" ? 'card-expanded' : 'card-collapsed');
+  let highlightedCard = $derived(mouseX > 0 ? "GP" : "LP");
 
+  // FUNCTIONS ===============
+  
   function handleCardClick(selected) {
-    if (current || animating) return;
-    animating = true;
+    currentCard = selected;
+    const container = document.getElementById("content");
+    container.scrollIntoView({ behavior: "smooth" });
 
-    if (layoutInstance) {
-      layoutInstance.update(({ root }) => {
-        root.classList.remove('cards-grid');
-        root.classList.add('cards-current-' + selected);
-      }, {
-        duration: 800,
-        ease: 'outExpo',
-      }).then(() => {
-        showContent = true;
-        animating = false;
-        tick().then(() => {
-          document.getElementById(selected)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-      });
-    } else {
-      showContent = true;
-      animating = false;
-    }
-
-    // Sync Svelte state so reactive class binding matches the DOM change
-    current = selected;
+    window.setTimeout(() => { showContent = true; }, 600);
   }
 
+  function handleScroll() {
+    contentTop = contentTop || document.getElementById("content").getBoundingClientRect().top;
+    const scrollMin = contentTop * 0.4;
+    const scrollMax = contentTop * 0.8;
+    scrollImpact = Math.max(0, Math.min(1, (window.scrollY - scrollMin ) / (scrollMax - scrollMin)));
+    // Auto trigger
+    if (screenLG && scrollImpact >= 1 && !currentCard) handleCardClick(highlightedCard);
+  }
+
+  function handleMouseMove(e) {
+    mouseX = Math.round((e.clientX - window.innerWidth / 2) / (window.innerWidth / 2) * 100) / 100;
+  }
+
+  function handleResize(e) {
+    screenLG = window.innerWidth >= "1024";
+  }
+
+
+  // LOAD ====================
+
+  onMount(handleResize);
+
 </script>
+
+<svelte:window
+  onmousemove={handleMouseMove}
+  onscroll={handleScroll}
+  onresize={handleResize}
+></svelte:window>
 
 <Navbar />
 <Hero />
@@ -66,65 +76,57 @@
   Selecting a card displays that card's content first, the other card's content second, and the rest of the content after.
 -->
 
-<div bind:this={containerEl} class="layout-container {current ? 'cards-current-' + current : 'cards-grid'}">
-
-  <!-- svelte-ignore a11y_click_events_have_key_events -->
-  <!-- svelte-ignore a11y_no_static_element_interactions -->
-  <div class="card-LP" onclick={() => handleCardClick('LP')}>
-
-    <div class="bg-white relative z-10 space-y-24 md:space-y-40 lg:space-y-64">
-
-      <!-- LPs Hero -->
-      <section id="LP" class="bg-linear-to-b from-blue-100 to-blue-100/0
-        scroll-mt-16 pt-24 lg:pt-40
-      ">
-
-        <div class="container mx-auto px-4 lg:px-10 xl:px-24">
-          <Heading large center
-            tag="For LPs Deploying Capital"
-            title="The Inbound Intelligence Engine"
-            subtitle="Automate your intake. Accelerate your mandate. Transform a chaotic inbox into a streamlined pipeline."
-            text="Schematic&apos;s AI analyzes every inbound request against your specific investment criteria the moment it arrives."
-          />
-        </div>
-      </section>
-
-      <div class="{showContent ? '' : 'lg:hidden'} relative z-10 bg-white px-4 space-y-24 md:space-y-40 lg:space-y-64 pb-24 md:pb-40 lg:pb-64">
-        <ContentLP />
-      </div>
+<div id="content" class="w-screen min-h-screen relative flex flex-col {currentCard == "GP" ? 'flex-col-reverse' : ''}"
+  style="
+    --mouseX: {mouseX};
+    --scrollImpact: {scrollImpact};
+  "
+>
+  
+  <!-- Card LP -->
+  <div class="
+      card card-LP {LPCardStateClass} {highlightedCard == "LP" ? 'z-10' : ''}
+      py-24 space-y-24 sm:py-40 sm:space-y-40 xl:py-64 xl:space-y-64
+      bg-white text-foreground-primary
+    "
+    style="--extra-scale: {highlightedCard == "LP" ? 0.25 * scrollImpact : 0};"
+  >
+    <Heading large center
+      tag="For LPs Deploying Capital"
+      title="The Inbound Intelligence Engine"
+      subtitle="Automate your intake. Accelerate your mandate. Transform a chaotic inbox into a streamlined pipeline."
+      text="Schematic&apos;s AI analyzes every inbound request against your specific investment criteria the moment it arrives."
+    />
+    <div class="{!showContent ? 'lg:hidden' : ''} px-4 sm:px-10 space-y-24 sm:space-y-40 lg:space-y-80">
+      <ContentLP />
     </div>
-
+    <button class="hidden absolute inset-0 cursor-pointer {!showContent ? 'lg:block' : ''}" onclick={() => handleCardClick("LP")} aria-label="Explore LP Features"></button>
   </div>
 
-  <!-- svelte-ignore a11y_click_events_have_key_events -->
-  <!-- svelte-ignore a11y_no_static_element_interactions -->
-  <div class="card-GP" onclick={() => handleCardClick('GP')}>
-
-    <div class="bg-tint-dark text-white space-y-24 md:space-y-40 lg:space-y-64">
-  
-      <!-- GPs Hero -->
-      <section id="GP" class="
-        scroll-mt-16 pt-24 lg:pt-40
-        bg-tint-dark text-white bg-linear-to-b from-blue-900 to-blue-900/0
-      ">
-        <div class="container mx-auto px-4 lg:px-10 xl:px-24">
-          <Heading large center
-            tag="For GPs Deploying Capital"
-            title="The Seamless Closing Engine"
-            subtitle="Shorten the cycle. Secure the commitment. Eliminate the administrative friction tax."
-            text="Schematic organizes your data, automates your logistics, and removes every hurdle between an LP and a signature."
-          />
-        </div>  
-      </section>
-
-      <div class="{showContent ? '' : 'lg:hidden'} relative z-10 bg-tint-dark text-white px-4 space-y-24 md:space-y-40 lg:space-y-64 pb-24 md:pb-40 lg:pb-64">
-        <ContentGP />
-      </div>
+  <!-- Card GP -->
+  <div class="
+      card card-GP {GPCardStateClass} {highlightedCard == "GP" ? 'z-10' : ''}
+      py-24 space-y-24 sm:py-40 sm:space-y-40 xl:py-64 xl:space-y-64
+      bg-tint-dark text-white
+    "
+    style="--extra-scale: {highlightedCard == "GP" ? 0.25 * scrollImpact : 0};"
+  >
+    <Heading large center
+      tag="For GPs Deploying Capital"
+      title="The Seamless Closing Engine"
+      subtitle="Shorten the cycle. Secure the commitment. Eliminate the administrative friction tax."
+      text="Schematic organizes your data, automates your logistics, and removes every hurdle between an LP and a signature."
+    />
+    <div class="{!showContent ? 'lg:hidden' : ''} space-y-80">
+      <ContentGP />
     </div>
-
+    <button class="hidden absolute inset-0 cursor-pointer {!showContent ? 'lg:block' : ''}" onclick={() => handleCardClick("GP")} aria-label="Explore GP Features"></button>
   </div>
 
 </div>
+
+
+<!-- Rest of the page, hidden if LG screen with hidden cards -->
 
 <div class={showContent ? '' : 'lg:hidden'}>
 
@@ -138,52 +140,75 @@
 
 <style lang="postcss">
   @reference "tailwindcss";
-
-  @media (min-width: 1024px) {
-
-    .card-LP, .card-GP {
-      overflow: hidden;
-      transition: border-radius 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                  box-shadow 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  
+  @media (width >= 1024px) {
+    .card {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      transition: all cubic-bezier(0.22, 1, 0.36, 1) 500ms;
+      transform-origin: bottom;
+      animation: fromHidden 1s cubic-bezier(0.22, 1, 0.36, 1) backwards;
     }
 
-    .cards-grid {
-      @apply container mx-auto px-10 grid grid-cols-2 gap-0;
+    .card-collapsed {
+      --card-w: 400px;
+      --card-h: 520px;
+      --distanceX: 2vw;
+
+      padding: 0;
+      width: var(--card-w);
+      height: var(--card-h);
+      border-radius: 16px;
+      top: 0;
     }
-    .cards-current-LP {
-      @apply flex flex-col;
+    
+    :global(.card-collapsed .heading-group) {
+      height: 100%;
+      scale: 0.75;
+      justify-content: space-between;
+      margin-bottom: auto;
     }
 
-    .cards-current-GP {
-      @apply flex flex-col-reverse;
+    .card-collapsed.card-LP { 
+      left: calc(50% - var(--card-w) - var(--distanceX));
+      scale: calc(1 + (0.25 * var(--mouseX) * -1) + var(--extra-scale));
+      rotate: calc(10deg * min(0, var(--mouseX) * -1) - 1deg);
+      animation-delay: 400ms;
+    }
+    .card-collapsed.card-GP { 
+      left: calc(50% + var(--distanceX));
+      scale: calc(1 + (0.25 * var(--mouseX)) + var(--extra-scale));
+      rotate: calc(10deg * min(0, var(--mouseX)) * -1 + 1deg);
+      animation-delay: 600ms;
     }
 
-    .cards-grid .card-LP,
-    .cards-grid .card-GP {
-      @apply relative z-10 origin-top rounded-3xl overflow-hidden shadow-xl scale-75 lg:aspect-6/8 xl:aspect-6/7;
-      animation: fromHidden 1s linear(0, 0.006 1.1%, 0.025 2.3%, 0.103 5%, 0.553 15.6%, 0.746 21.1%, 0.818 23.8%, 0.878 26.6%, 0.926 29.5%, 0.964 32.6%, 1.005 38.5%, 1.021 45.9%, 1.002 74.9%, 1) backwards;
-      animation-delay: 1s;
+    .card-expanded {
+      z-index: 10;
+      width: 100vw;
+      height: 100vh;
+      left: 0;
     }
 
-    .cards-grid .card-GP {
-      background-color: #3B3750;
-      animation-delay: 1.2s;
+    .card-static {
+      position: relative;
+      min-height: 100vh;
+    }
+
+
+    /* Not selected card goes out of view */
+    #content:has(.card-expanded) .card-collapsed {
+      scale: 0;
+      opacity: 0;
     }
 
   }
 
-
-
-@keyframes fromHidden {
-  from {
-    transform: translateY(200%);
-    opacity: 0;
+  @keyframes fromHidden {
+    from {
+      transform: translateY(200vh);
+      opacity: 0;
+    }
   }
-  to {
-    transform: none;
-    opacity: 1;
-  }
-}
-
-
+  
 </style>
