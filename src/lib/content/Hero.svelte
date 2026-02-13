@@ -1,8 +1,5 @@
-<script>
-  import { scrollReveal } from '$lib/actions/scrollReveal.js';
-</script>
 
-<section id="home" use:scrollReveal={{ y: 100, duration: 0.6 }}>
+<section id="home" style="animation: slideIn 400ms 200ms var(--ease-smooth) backwards;">
   <div class="container mx-auto text-center flex flex-col justify-center pt-40 pb-24 px-4 sm:px-10 space-y-6 md:space-y-20">
 
     <h1 class="text-4xl md:text-6xl lg:text-8xl xl:text-[100px] font-semibold tracking-tight leading-[100%]">The New Standard for Private Capital.</h1>
