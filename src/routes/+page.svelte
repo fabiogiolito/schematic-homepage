@@ -24,7 +24,10 @@
     relative flex-1 aspect-3/4 rounded-xl shadow-xl p-20 flex flex-col gap-10 pointer-events-auto
     transition-all duration-500 ease-smooth -rotate-1 hover:-rotate-2 hover:scale-110 group-hover:scale-75
     bg-white text-foreground-primary
-  " style="animation: slideIn 400ms 400ms var(--ease-smooth) backwards;">
+  " style="
+    animation: slideIn 400ms 400ms var(--ease-smooth) backwards;
+    view-transition-name: card-lp;
+  ">
     <Image src="/LPs-BG-Card.png" class="absolute inset-0 object-cover -z-10" />
     <p class="text-white text-lg mb-auto text-shadow-lg">Deploy Capital</p>
     <h2 class="text-4xl font-medium leading-none tracking-tight">The Intelligence Engine</h2>
@@ -37,7 +40,10 @@
     relative flex-1 aspect-3/4 rounded-xl shadow-xl p-20 flex flex-col gap-10 pointer-events-auto
     transition-all duration-500 ease-smooth rotate-1 hover:rotate-2 hover:scale-110 [:hover+&]:scale-75
     text-white
-  " style="animation: slideIn 400ms 600ms var(--ease-smooth) backwards;">
+  " style="
+    animation: slideIn 400ms 600ms var(--ease-smooth) backwards;
+    view-transition-name: card-gp;
+  ">
     <Image src="/GPs-BG-Card.png" class="absolute inset-0 object-cover -z-10" />
     <p class="text-lg mb-auto text-shadow-lg">Raise Capital</p>
     <h2 class="text-4xl font-medium leading-none tracking-tight">The Frictionless Raise</h2>

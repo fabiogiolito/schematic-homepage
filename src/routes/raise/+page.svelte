@@ -19,7 +19,10 @@
 
 <div class="bg-tint-dark text-white">
   <!-- BG Image -->
-  <div class="absolute left-0 top-0 w-full h-screen bg-[url(/GPs-BG-Card.png)] bg-cover bg-center bg-no-repeat mask-b-from-20%"></div>
+  <div 
+    class="absolute left-0 top-0 w-full h-screen bg-[url(/GPs-BG-Card.png)] bg-cover bg-center bg-no-repeat mask-b-from-20%"
+    style="view-transition-name: card-gp;"
+  ></div>
 
   <!-- Content -->
   <div class="relative z-10 py-64 space-y-64">

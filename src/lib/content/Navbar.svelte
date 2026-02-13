@@ -15,7 +15,10 @@
 
 </script>
 
-<div class="fixed z-20 w-full top-0 left-0 right-0 px-4 md:px-10 {light ? 'text-white' : ''} {classCustom}">
+<div
+  class="fixed z-20 w-full top-0 left-0 right-0 px-4 md:px-10 {light ? 'text-white' : ''} {classCustom}"
+  style="view-transition-name: nav;"
+>
   <div class="container mx-auto py-4 md:py-6 flex justify-between items-center">
 
     <!-- Logo -->
