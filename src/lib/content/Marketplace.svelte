@@ -1,10 +1,11 @@
 <script>
   import { onMount } from 'svelte';
   import { animate, scroll, inView } from 'motion';
-  import Heading from "$lib/components/Heading.svelte";
-  import FeatureBlock from "$lib/components/FeatureBlock.svelte";
   import { scrollReveal } from '$lib/actions/scrollReveal.js';
 
+  import Heading from "$lib/components/Heading.svelte";
+  import FeatureBlock from "$lib/components/FeatureBlock.svelte";
+  
   let circlesContainer;
   let circleLeft;
   let circleRight;
