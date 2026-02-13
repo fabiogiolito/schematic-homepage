@@ -16,8 +16,6 @@
       </span>
     </a>
 
-    <BreakpointsDebug />
-
     <!-- Tabs -->
     <!-- <nav class="hidden text-sm font-medium justify-self-center">
       <a class="px-4 py-2.5 rounded hover:bg-tint/10" href="#LP">Deploy Capital</a>
